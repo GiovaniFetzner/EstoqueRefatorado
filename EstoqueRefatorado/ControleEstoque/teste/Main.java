@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        ControleEstoque controleEstoque = new ControleEstoque();
+        ControleEstoque controleEstoque = new ControleEstoque("EstoqueRefatorado/dados/Itens.csv");
         Scanner leitura = new Scanner(System.in);
         int opcao = 0;
         int codigo = 0;

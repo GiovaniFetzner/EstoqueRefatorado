@@ -13,18 +13,19 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ControleEstoqueTest {
-    private static final String TEST_FILE_PATH = "teste/ItensTest.csv";
-    ControleEstoque estoque = new ControleEstoque();
+    private final String TEST_FILE_PATH = "EstoqueRefatorado/ControleEstoque/teste/ItensTest.csv";
+    ControleEstoque estoque = new ControleEstoque(TEST_FILE_PATH);
     ArrayList<Item> itens;
 
-    public ControleEstoqueTest() {
+   /* public ControleEstoqueTest() {
         itens = new ArrayList<>();
         itens = estoque.leituraCSV(TEST_FILE_PATH);
-    }
+    }*/
 
     @Test
     void testVerificaCodigo01() { //Cenario: Item existente no estoque
-        assertTrue(estoque.vericaCodigo(3434) != null);
+        System.out.println(estoque.vericaCodigo(3434).toString());
+        assertNotNull(estoque.vericaCodigo(3434));
     }
 
     @Test
@@ -83,7 +84,5 @@ class ControleEstoqueTest {
         assertEquals(0,estoque.vericaCodigo(8989).getQuantidade());
 
     }
-
-
 
 }

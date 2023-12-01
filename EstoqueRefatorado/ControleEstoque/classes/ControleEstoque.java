@@ -5,31 +5,32 @@ import java.util.ArrayList;
 
 public class ControleEstoque {
 
-    private final String PATH_ARQUIVO = "EstoqueRefatorado/dados/Itens.csv";
+    String pathArquivo;
     ArrayList<Item> estoque;
 
-    public ControleEstoque() {
+    public ControleEstoque(String pathArquivo) {
+        this.pathArquivo = pathArquivo;
         estoque = new ArrayList<>();
 
         try {
-            FileWriter escreve = getFileWriter();
+            FileWriter escreve = getFileWriter(pathArquivo);
 
             if (escreve != null) {
                 escreve.close(); // Fechar o FileWriter, pois já escreveu o cabeçalho
             }
 
-            estoque = leituraCSV(PATH_ARQUIVO);
+            estoque = leituraCSV(pathArquivo);
         } catch (IOException e) {
             System.out.println("Erro ao inicializar o Controle de Estoque: " + e.getMessage());
         }
     }
 
     //Valida a existencia do arquivo no diretório
-    private FileWriter getFileWriter() throws IOException {
-        boolean arquivoExiste = new File(PATH_ARQUIVO).exists();
+    public FileWriter getFileWriter(String pathArquivo) throws IOException {
+        boolean arquivoExiste = new File(pathArquivo).exists();
 
         //Abrir o escritor do arquivo e validar se existe
-        FileWriter escreve = new FileWriter(PATH_ARQUIVO, StandardCharsets.ISO_8859_1, true);
+        FileWriter escreve = new FileWriter(pathArquivo, StandardCharsets.ISO_8859_1, true);
         if (!arquivoExiste) {
             escreve.write("Codigo;classes.Categoria;Produto;Valor;Quantidade;QuantidadeMinima\n");
         }
@@ -152,7 +153,7 @@ public class ControleEstoque {
 
     public void salvarAlteracoes() throws IOException {
         if (estoque != null) {
-            try (BufferedWriter escreve = new BufferedWriter(new FileWriter(PATH_ARQUIVO, StandardCharsets.ISO_8859_1))) {
+            try (BufferedWriter escreve = new BufferedWriter(new FileWriter(pathArquivo, StandardCharsets.ISO_8859_1))) {
                 escreve.write("Codigo;classes.Categoria;Produto;Valor;Quantidade;QuantidadeMinima\n");
                 for (Item item : estoque) {
                     escreve.write(item.getCodigo() + ";" + item.getCategoria() + ";" +
