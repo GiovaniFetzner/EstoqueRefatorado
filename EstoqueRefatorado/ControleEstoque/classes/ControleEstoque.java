@@ -18,7 +18,7 @@ public class ControleEstoque {
                 escreve.close(); // Fechar o FileWriter, pois já escreveu o cabeçalho
             }
 
-            estoque = leituraCSV();
+            estoque = leituraCSV(PATH_ARQUIVO);
         } catch (IOException e) {
             System.out.println("Erro ao inicializar o Controle de Estoque: " + e.getMessage());
         }
@@ -36,8 +36,8 @@ public class ControleEstoque {
         return escreve;
     }
 
-    public ArrayList<Item> leituraCSV() {
-        try (BufferedReader br = new BufferedReader(new FileReader(PATH_ARQUIVO))) {
+    public ArrayList<Item> leituraCSV(String pathArquivo) {
+        try (BufferedReader br = new BufferedReader(new FileReader(pathArquivo))) {
             br.readLine(); // Ignorando a primeira linha (cabeçalho)
             String itensDaLista = br.readLine();
             while (itensDaLista != null) {
