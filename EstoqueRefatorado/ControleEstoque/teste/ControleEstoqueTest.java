@@ -17,20 +17,15 @@ class ControleEstoqueTest {
     ControleEstoque estoque = new ControleEstoque(TEST_FILE_PATH);
     ArrayList<Item> itens;
 
-   /* public ControleEstoqueTest() {
-        itens = new ArrayList<>();
-        itens = estoque.leituraCSV(TEST_FILE_PATH);
-    }*/
 
     @Test
     void testVerificaCodigo01() { //Cenario: Item existente no estoque
-        System.out.println(estoque.vericaCodigo(3434).toString());
         assertNotNull(estoque.vericaCodigo(3434));
     }
 
     @Test
     void testVerificaCodigo02() { //Cenario: Item existente no estoque
-        assertFalse(estoque.vericaCodigo(5151) != null);
+        assertNull(estoque.vericaCodigo(5151));
     }
 
     @Test
