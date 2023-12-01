@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ControleEstoque {
 
-    private final String PATH_ARQUIVO = "dados/Itens.csv";
+    private final String PATH_ARQUIVO = "EstoqueRefatorado/dados/Itens.csv";
     ArrayList<Item> estoque;
 
     public ControleEstoque() {

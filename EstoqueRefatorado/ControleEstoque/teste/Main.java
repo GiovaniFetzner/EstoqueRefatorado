@@ -13,8 +13,8 @@ public class Main {
         int opcao = 0;
         int codigo = 0;
 
+        System.out.println("--- Bem vindo ao controle de estoque ---");
         while (opcao != 6) {
-            System.out.println("--- Bem vindo ao controle de estoque ---");
             opcao = 0;
             System.out.println("Escolha sua operação:\n" +
                     "1. Adicionar Item no Estoque\n" +
